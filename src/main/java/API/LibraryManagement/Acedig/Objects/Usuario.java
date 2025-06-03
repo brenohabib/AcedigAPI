@@ -1,20 +1,24 @@
 package API.LibraryManagement.Acedig.Objects;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.sql.Date;
+import java.util.Date;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class Usuario {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
     private String email;
     private String senha;
     private String telefone;
+    boolean ativo = true;
+
+    @CreatedDate
     private Date dataCadastro;
 
     public String getNome() {
@@ -64,8 +68,6 @@ public class Usuario {
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
-
-    boolean ativo;
 
     public void setId(Long id) {
         this.id = id;

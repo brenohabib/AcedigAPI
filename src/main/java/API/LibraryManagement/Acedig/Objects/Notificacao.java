@@ -3,6 +3,7 @@ package API.LibraryManagement.Acedig.Objects;
 import API.LibraryManagement.Acedig.Enums.TipoNotificacao;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.sql.Date;
@@ -10,7 +11,7 @@ import java.sql.Date;
 @Entity
 public class Notificacao {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String mensagem;
     private Date dataEnvioDate;

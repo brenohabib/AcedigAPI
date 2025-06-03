@@ -3,6 +3,7 @@ package API.LibraryManagement.Acedig.Objects;
 import API.LibraryManagement.Acedig.Enums.StatusEmprestimo;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.math.BigDecimal;
@@ -11,7 +12,7 @@ import java.sql.Date;
 @Entity
 public class Emprestimo {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date dataEmprestimo;
     private Date dataPrevistaDevolcao;

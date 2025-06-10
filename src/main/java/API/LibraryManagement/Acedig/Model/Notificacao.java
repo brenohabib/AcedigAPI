@@ -1,6 +1,5 @@
-package API.LibraryManagement.Acedig.Objects;
+package API.LibraryManagement.Acedig.Model;
 
-import API.LibraryManagement.Acedig.Enums.TipoNotificacao;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

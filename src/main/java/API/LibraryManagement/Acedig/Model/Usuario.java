@@ -1,4 +1,4 @@
-package API.LibraryManagement.Acedig.Objects;
+package API.LibraryManagement.Acedig.Model;
 
 import jakarta.persistence.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -8,17 +8,31 @@ import java.util.Date;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "usuario")
 public class Usuario {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
+
+    @Column(name = "nome")
     private String nome;
+
+    @Column(name = "email", unique = true)
     private String email;
+
+    @Column(name = "senha")
     private String senha;
+
+    @Column(name = "telefone")
     private String telefone;
-    boolean ativo = true;
+
+    @Column(name = "ativo")
+    private boolean ativo = true;
 
     @CreatedDate
+    @Column(name = "data_cadastro", updatable = false)
     private Date dataCadastro;
 
     public String getNome() {

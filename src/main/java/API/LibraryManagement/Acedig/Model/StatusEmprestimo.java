@@ -1,4 +1,4 @@
-package API.LibraryManagement.Acedig.Enums;
+package API.LibraryManagement.Acedig.Model;
 
 public enum StatusEmprestimo {
     ATIVO,

@@ -1,6 +1,5 @@
-package API.LibraryManagement.Acedig.Objects;
+package API.LibraryManagement.Acedig.Model;
 
-import API.LibraryManagement.Acedig.Enums.TipoLivro;
 import jakarta.persistence.Entity;
 
 @Entity

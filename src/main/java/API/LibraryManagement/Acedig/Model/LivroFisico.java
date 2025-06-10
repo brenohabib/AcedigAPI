@@ -1,4 +1,4 @@
-package API.LibraryManagement.Acedig.Objects;
+package API.LibraryManagement.Acedig.Model;
 
 import jakarta.persistence.Entity;
 

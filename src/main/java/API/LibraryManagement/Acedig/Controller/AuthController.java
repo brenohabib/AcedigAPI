@@ -5,6 +5,9 @@ import API.LibraryManagement.Acedig.Service.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/auth")
@@ -29,8 +32,14 @@ public class AuthController {
 
     @GetMapping("/login")
     public ResponseEntity<?> login(@RequestBody Usuario request) {
-        if (usuarioService.validarCredenciais(request.getEmail(), request.getSenha())) {
-            return ResponseEntity.status(HttpStatus.OK).body("Usuario encontrado");
+        Optional<Usuario> usuario = usuarioService.findByEmail(request.getEmail());
+
+        if (usuario.isPresent() && usuarioService.validarCredenciais(request.getEmail(), request.getSenha())) {
+            Map<String, String> response = new LinkedHashMap<>();
+            response.put("nome", usuario.get().getNome());
+            response.put("senha", usuario.get().getSenha());
+
+            return ResponseEntity.status(HttpStatus.OK).body(response);
         }
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }

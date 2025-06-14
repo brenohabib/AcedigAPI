@@ -2,8 +2,7 @@ package API.LibraryManagement.Acedig.Model;
 
 import jakarta.persistence.*;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@MappedSuperclass
 public abstract class Livro {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

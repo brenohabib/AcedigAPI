@@ -5,6 +5,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
@@ -34,6 +35,9 @@ public class Usuario {
     @CreatedDate
     @Column(name = "data_cadastro", updatable = false)
     private Date dataCadastro;
+
+    @OneToMany(mappedBy = "usuario")
+    private Set<Notificacao> notificacao;
 
     public String getNome() {
         return nome;

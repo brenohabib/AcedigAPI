@@ -4,11 +4,13 @@ import API.LibraryManagement.Acedig.Model.Usuario;
 import API.LibraryManagement.Acedig.Repository.UsuarioRepository;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;

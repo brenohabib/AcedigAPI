@@ -1,9 +1,6 @@
 package API.LibraryManagement.Acedig.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.sql.Date;
 
@@ -13,9 +10,12 @@ public class Notificacao {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String mensagem;
-    private Date dataEnvioDate;
+    private Date dataCriacao;
     private TipoNotificacao tipoNotificacao;
     private boolean lida;
+
+    @ManyToOne(optional = false)
+    private Usuario usuario;
 
     public Long getId() {
         return id;
@@ -33,12 +33,12 @@ public class Notificacao {
         this.mensagem = mensagem;
     }
 
-    public Date getDataEnvioDate() {
-        return dataEnvioDate;
+    public Date getDataCriacao() {
+        return dataCriacao;
     }
 
-    public void setDataEnvioDate(Date dataEnvioDate) {
-        this.dataEnvioDate = dataEnvioDate;
+    public void setDataCriacao(Date dataCriacao) {
+        this.dataCriacao = dataCriacao;
     }
 
     public TipoNotificacao getTipoNotificacao() {
@@ -57,5 +57,11 @@ public class Notificacao {
         this.lida = lida;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
 
+    public void setUsuario(Usuario usuarios) {
+        this.usuario = usuarios;
+    }
 }

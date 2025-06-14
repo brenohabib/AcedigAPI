@@ -1,4 +1,4 @@
-package API.LibraryManagement.Acedig.Model;
+package API.LibraryManagement.Acedig.Data.Model;
 
 import jakarta.persistence.*;
 
@@ -12,7 +12,7 @@ public abstract class Livro {
     private String isbn;
     private String editora;
     private int anoPublicacao;
-    boolean ativo;
+    boolean ativo = true;
 
     public Long getId() {
         return id;

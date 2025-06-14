@@ -1,6 +1,6 @@
 package API.LibraryManagement.Acedig.Repository;
 
-import API.LibraryManagement.Acedig.Model.Notificacao;
+import API.LibraryManagement.Acedig.Data.Model.Notificacao;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

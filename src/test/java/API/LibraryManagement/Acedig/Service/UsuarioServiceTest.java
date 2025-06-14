@@ -1,6 +1,6 @@
 package API.LibraryManagement.Acedig.Service;
 
-import API.LibraryManagement.Acedig.Model.Usuario;
+import API.LibraryManagement.Acedig.Data.Model.Usuario;
 import API.LibraryManagement.Acedig.Repository.UsuarioRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

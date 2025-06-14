@@ -1,6 +1,8 @@
 package API.LibraryManagement.Acedig.Controller;
 
-import API.LibraryManagement.Acedig.Model.Notificacao;
+import API.LibraryManagement.Acedig.Data.DTO.NotificacaoDTO;
+import API.LibraryManagement.Acedig.Data.Mapper;
+import API.LibraryManagement.Acedig.Data.Model.Notificacao;
 import API.LibraryManagement.Acedig.Service.NotificacaoService;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +19,12 @@ public class NotificacaoController {
     }
 
     @GetMapping
-    List<Notificacao> getNotificacoes(@RequestParam Long usuarioId, @RequestParam boolean onlyNotLidas){
-        return onlyNotLidas ? notificacaoService.findNotLida(usuarioId) : notificacaoService.find(usuarioId);
+    List<NotificacaoDTO> getNotificacoes(@RequestParam Long usuarioId, @RequestParam boolean onlyNotLidas){
+        List<Notificacao> notificacoes = onlyNotLidas ?
+                notificacaoService.findNotLida(usuarioId) :
+                notificacaoService.findAll(usuarioId);
+
+        return Mapper.toNotificacaoDTOList(notificacoes);
     }
 
     @PutMapping

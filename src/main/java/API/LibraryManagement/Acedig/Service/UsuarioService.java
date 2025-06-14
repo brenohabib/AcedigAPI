@@ -1,6 +1,6 @@
 package API.LibraryManagement.Acedig.Service;
 
-import API.LibraryManagement.Acedig.Model.Usuario;
+import API.LibraryManagement.Acedig.Data.Model.Usuario;
 import API.LibraryManagement.Acedig.Repository.UsuarioRepository;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.stereotype.Service;

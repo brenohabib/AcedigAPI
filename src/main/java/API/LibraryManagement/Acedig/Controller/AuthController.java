@@ -1,6 +1,6 @@
 package API.LibraryManagement.Acedig.Controller;
 
-import API.LibraryManagement.Acedig.Model.Usuario;
+import API.LibraryManagement.Acedig.Data.Model.Usuario;
 import API.LibraryManagement.Acedig.Service.UsuarioService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

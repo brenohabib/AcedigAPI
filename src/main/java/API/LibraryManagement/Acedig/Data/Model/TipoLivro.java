@@ -1,4 +1,4 @@
-package API.LibraryManagement.Acedig.Model;
+package API.LibraryManagement.Acedig.Data.Model;
 
 public enum TipoLivro{
     PDF,

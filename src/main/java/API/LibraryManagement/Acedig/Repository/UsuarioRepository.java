@@ -1,8 +1,7 @@
 package API.LibraryManagement.Acedig.Repository;
 
-import API.LibraryManagement.Acedig.Model.Usuario;
+import API.LibraryManagement.Acedig.Data.Model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 

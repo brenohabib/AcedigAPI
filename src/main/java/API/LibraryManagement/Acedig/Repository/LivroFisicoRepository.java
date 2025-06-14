@@ -1,7 +1,6 @@
 package API.LibraryManagement.Acedig.Repository;
 
-import API.LibraryManagement.Acedig.Model.LivroFisico;
-import org.springframework.data.jpa.repository.JpaRepository;
+import API.LibraryManagement.Acedig.Data.Model.LivroFisico;
 
-public interface LivroFisicoRepository extends JpaRepository<LivroFisico, Long> {
+public interface LivroFisicoRepository extends LivroRepository<LivroFisico> {
 }

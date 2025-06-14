@@ -1,4 +1,4 @@
-package API.LibraryManagement.Acedig.Model;
+package API.LibraryManagement.Acedig.Data.Model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;

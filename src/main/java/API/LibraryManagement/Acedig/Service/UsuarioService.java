@@ -35,7 +35,7 @@ public class UsuarioService {
                 .filter(user -> user.getSenha().equals(senha));
     }
 
-    public void registrar (Usuario usuario) {
+    public void registrar(Usuario usuario) {
         if(usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
             throw new RuntimeException("Email existente");
         }

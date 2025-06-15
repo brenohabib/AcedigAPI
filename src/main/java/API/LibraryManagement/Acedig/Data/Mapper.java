@@ -24,6 +24,12 @@ public class Mapper {
         );
     }
 
+    public static List<UsuarioDTO> toUsuarioDTOList(List<Usuario> usuarios) {
+        return usuarios.stream()
+                .map(Mapper::toUsuarioDTO)
+                .collect(Collectors.toList());
+    }
+
     public static NotificacaoDTO toNotificacaoDTO(Notificacao notificacao) {
         if (notificacao == null) {
             return null;

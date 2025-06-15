@@ -27,7 +27,7 @@ public class NotificacaoController {
         return Mapper.toNotificacaoDTOList(notificacoes);
     }
 
-    @PutMapping
+    @PatchMapping
     void markNotificacaoAsLida(@RequestParam Long notificacaoId) {
         notificacaoService.markAsLida(notificacaoId);
     }

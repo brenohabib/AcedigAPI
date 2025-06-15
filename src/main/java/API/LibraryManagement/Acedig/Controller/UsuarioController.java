@@ -1,5 +1,7 @@
 package API.LibraryManagement.Acedig.Controller;
 
+import API.LibraryManagement.Acedig.Data.DTO.UsuarioDTO;
+import API.LibraryManagement.Acedig.Data.Mapper;
 import API.LibraryManagement.Acedig.Data.Model.Usuario;
 import API.LibraryManagement.Acedig.Service.UsuarioService;
 import org.springframework.web.bind.annotation.*;
@@ -18,8 +20,9 @@ public class UsuarioController {
     }
 
     @GetMapping
-    List<Usuario> findAll() {
-        return usuarioService.findAll();
+    List<UsuarioDTO> findAll() {
+        List<Usuario> usuarios = usuarioService.findAll();
+        return Mapper.toUsuarioDTOList(usuarios);
     }
 
     @PostMapping
@@ -28,8 +31,9 @@ public class UsuarioController {
     }
 
     @GetMapping("/{id}")
-    Optional<Usuario> findById(@PathVariable Long id) {
-        return usuarioService.findById(id);
+    UsuarioDTO findById(@PathVariable Long id) {
+        Optional<Usuario> usuario = usuarioService.findById(id);
+        return usuario.map(Mapper::toUsuarioDTO).orElse(null);
     }
 
     @PutMapping("/{id}")

@@ -37,10 +37,6 @@ public class Notificacao {
         return dataCriacao;
     }
 
-    public void setDataCriacao(Date dataCriacao) {
-        this.dataCriacao = dataCriacao;
-    }
-
     public TipoNotificacao getTipoNotificacao() {
         return tipoNotificacao;
     }

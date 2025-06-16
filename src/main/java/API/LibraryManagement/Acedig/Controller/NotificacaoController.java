@@ -4,6 +4,7 @@ import API.LibraryManagement.Acedig.Data.DTO.NotificacaoDTO;
 import API.LibraryManagement.Acedig.Data.Mapper;
 import API.LibraryManagement.Acedig.Data.Model.Notificacao;
 import API.LibraryManagement.Acedig.Service.NotificacaoService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,7 +29,11 @@ public class NotificacaoController {
     }
 
     @PatchMapping
-    void markNotificacaoAsLida(@RequestParam Long notificacaoId) {
-        notificacaoService.markAsLida(notificacaoId);
+    ResponseEntity<?> markNotificacaoAsLida(@RequestParam Long notificacaoId) {
+        if(notificacaoService.findById(notificacaoId).isPresent()) {
+            notificacaoService.markAsLida(notificacaoId);
+            return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
     }
 }

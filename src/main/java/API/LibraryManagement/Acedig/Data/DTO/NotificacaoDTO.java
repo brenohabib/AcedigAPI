@@ -10,6 +10,8 @@ public class NotificacaoDTO {
     private boolean lida;
     private UsuarioDTO usuario;
 
+    public NotificacaoDTO() {}
+
     public NotificacaoDTO(Long id, String mensagem, Date dataCriacao,
                           String tipoNotificacao, boolean lida, UsuarioDTO usuario) {
         this.id = id;

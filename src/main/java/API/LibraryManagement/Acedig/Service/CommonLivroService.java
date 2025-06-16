@@ -26,19 +26,30 @@ public abstract class CommonLivroService<T extends Livro> {
         return repository.findByTituloContainingOrAutorContaining(termo, termo, pageable);
     }
 
-    public List<T> findWithFilter(String titulo, String autor, String editora, Boolean ativo) {
-        return repository.findByTituloOrAutorOrEditoraOrAtivo(titulo, autor, editora, ativo);
-    }
-
     public T create(T livro) {
         return repository.save(livro);
     }
 
-    public T update(Long id, T livroAtualizado) {
-        T livro = repository.findById(id)
+    public T update(T livroAtualizado) {
+        T livro = repository.findById(livroAtualizado.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Livro não encontrado"));
 
-        dataToUpdate(livro, livroAtualizado);
+        if (livroAtualizado.getTitulo() != null) {
+            livro.setTitulo(livroAtualizado.getTitulo());
+        }
+        if  (livroAtualizado.getAutor() != null) {
+            livro.setAutor(livroAtualizado.getAutor());
+        }
+        if (livroAtualizado.getEditora() != null) {
+            livro.setEditora(livroAtualizado.getEditora());
+        }
+        if (livroAtualizado.getIsbn() != null) {
+            livro.setIsbn(livroAtualizado.getIsbn());
+        }
+        if (livroAtualizado.getAnoPublicacao() > 0) {
+            livro.setAnoPublicacao(livroAtualizado.getAnoPublicacao());
+        }
+        extraDataUpdate(livro, livroAtualizado);
 
         return repository.save(livro);
     }
@@ -58,5 +69,5 @@ public abstract class CommonLivroService<T extends Livro> {
         return repository.findAll();
     }
 
-    protected abstract void dataToUpdate(T livroExistente, T livroAtualizado);
+    protected abstract void extraDataUpdate(T livroExistente, T livroAtualizado);
 }

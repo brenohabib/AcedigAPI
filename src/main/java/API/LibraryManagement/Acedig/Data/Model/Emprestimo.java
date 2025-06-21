@@ -1,9 +1,6 @@
 package API.LibraryManagement.Acedig.Data.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -13,11 +10,33 @@ public class Emprestimo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @OneToOne
+    @JoinColumn(name = "livro_fisico_id")
+    private LivroFisico livroFisico;
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
     private Date dataEmprestimo;
     private Date dataPrevistaDevolcao;
     private Date dataDevolcao;
     private StatusEmprestimo status;
     private BigDecimal valorMulta;
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public LivroFisico getLivroFisico() {
+        return livroFisico;
+    }
+
+    public void setLivroFisico(LivroFisico livroFisico) {
+        this.livroFisico = livroFisico;
+    }
 
     public Long getId() {
         return id;

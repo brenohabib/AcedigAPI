@@ -49,8 +49,8 @@ public class LivroFisicoController {
         return ResponseEntity.ok().build();
     }
 
-    @PatchMapping
-    public ResponseEntity<?> remove(@RequestBody Long id) {
+    @PatchMapping("/remove/{id}")
+    public ResponseEntity<?> remove(@PathVariable Long id) {
         if (id == null) {
             return ResponseEntity.badRequest().build();
         }

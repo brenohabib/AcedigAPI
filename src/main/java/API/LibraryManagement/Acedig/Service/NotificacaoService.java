@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -36,6 +37,10 @@ public class NotificacaoService {
         //TODO: enviar por email
     }
 
+    public Optional<Notificacao> findById(Long id){
+        return notificacaoRepository.findById(id);
+    }
+
     public List<Notificacao> findNotLida(Long usuarioId) {
         return notificacaoRepository.findByUsuarioIdAndLidaFalse(usuarioId);
     }
@@ -51,5 +56,4 @@ public class NotificacaoService {
         notificacao.setLida(true);
         notificacaoRepository.save(notificacao);
     }
-
 }

@@ -9,6 +9,8 @@ public class UsuarioDTO {
     private boolean ativo;
     private Date dataCadastro;
 
+    public UsuarioDTO() {}
+
     public UsuarioDTO(Long id, String nome, String email, boolean ativo, Date dataCadastro) {
         this.id = id;
         this.nome = nome;

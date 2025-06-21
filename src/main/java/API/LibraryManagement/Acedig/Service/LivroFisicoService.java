@@ -14,12 +14,9 @@ public class LivroFisicoService extends CommonLivroService<LivroFisico> {
     }
 
     @Override
-    protected void dataToUpdate(LivroFisico livroExistente, LivroFisico livroAtualizado) {
-        livroExistente.setTitulo(livroAtualizado.getTitulo());
-        livroExistente.setAutor(livroAtualizado.getAutor());
-        livroExistente.setEditora(livroAtualizado.getEditora());
-        livroExistente.setIsbn(livroAtualizado.getIsbn());
-        livroExistente.setAnoPublicacao(livroAtualizado.getAnoPublicacao());
-        livroExistente.setQuantidadeTotal(livroAtualizado.getQuantidadeTotal());
+    protected void extraDataUpdate(LivroFisico livroExistente, LivroFisico livroAtualizado) {
+        if  (livroAtualizado.getQuantidadeTotal() > 0) {
+            livroExistente.setQuantidadeTotal(livroAtualizado.getQuantidadeTotal());
+        }
     }
 }

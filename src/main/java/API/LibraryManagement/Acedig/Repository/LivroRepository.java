@@ -11,5 +11,4 @@ import java.util.List;
 @NoRepositoryBean
 public interface LivroRepository<T extends Livro> extends JpaRepository<T, Long> {
     Page<T> findByTituloContainingOrAutorContaining(String titulo, String autor, Pageable pageable);
-    List<T> findByTituloOrAutorOrEditoraOrAtivo(String titulo, String autor, String editora, Boolean ativo);
 }

@@ -4,6 +4,7 @@ import API.LibraryManagement.Acedig.Data.DTO.UsuarioDTO;
 import API.LibraryManagement.Acedig.Data.Mapper;
 import API.LibraryManagement.Acedig.Data.Model.Usuario;
 import API.LibraryManagement.Acedig.Service.UsuarioService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,23 +27,32 @@ public class UsuarioController {
     }
 
     @PostMapping
-    Usuario create(@RequestBody Usuario usuario) {
-        return usuarioService.save(usuario);
+    public ResponseEntity<?> create(@RequestBody Usuario usuario) {
+        usuarioService.save(usuario);
+        return ResponseEntity.ok().build();
     }
 
     @GetMapping("/{id}")
-    UsuarioDTO findById(@PathVariable Long id) {
+    public UsuarioDTO findById(@PathVariable Long id) {
         Optional<Usuario> usuario = usuarioService.findById(id);
         return usuario.map(Mapper::toUsuarioDTO).orElse(null);
     }
 
-    @PutMapping("/{id}")
-    Optional<Usuario> update(@PathVariable Long id, @RequestBody Usuario newUsuario) {
-        return usuarioService.update(newUsuario, id);
+    @PatchMapping("/{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody Usuario newUsuario) {
+        if (newUsuario == null) {
+            return ResponseEntity.badRequest().build();
+        }
+        usuarioService.update(newUsuario, id);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("/{id}")
-    void delete(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        if (id == null) {
+            return ResponseEntity.badRequest().build();
+        }
         usuarioService.delete(id);
+        return ResponseEntity.ok().build();
     }
 }

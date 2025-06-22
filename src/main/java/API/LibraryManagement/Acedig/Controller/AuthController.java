@@ -30,7 +30,7 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Usuario request) {
         Optional<Usuario> usuario = usuarioService.findByEmail(request.getEmail());
 

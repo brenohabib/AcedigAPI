@@ -11,6 +11,8 @@ public abstract class Livro {
     private String autor;
     private String isbn;
     private String editora;
+    @Column(columnDefinition = "MEDIUMTEXT")
+    private String texto;
     private int anoPublicacao;
     boolean ativo = true;
 
@@ -68,5 +70,13 @@ public abstract class Livro {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public String getTexto() {
+        return texto;
+    }
+
+    public void setTexto(String texto) {
+        this.texto = texto;
     }
 }

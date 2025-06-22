@@ -30,7 +30,7 @@ public abstract class CommonLivroService<T extends Livro> {
         return repository.save(livro);
     }
 
-    public T update(T livroAtualizado) {
+    public void update(T livroAtualizado) {
         T livro = repository.findById(livroAtualizado.getId())
                 .orElseThrow(() -> new EntityNotFoundException("Livro não encontrado"));
 
@@ -51,7 +51,7 @@ public abstract class CommonLivroService<T extends Livro> {
         }
         extraDataUpdate(livro, livroAtualizado);
 
-        return repository.save(livro);
+        repository.save(livro);
     }
 
     public void remove(Long id) {

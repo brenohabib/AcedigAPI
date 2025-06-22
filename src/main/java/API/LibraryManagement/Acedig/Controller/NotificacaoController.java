@@ -3,6 +3,7 @@ package API.LibraryManagement.Acedig.Controller;
 import API.LibraryManagement.Acedig.Data.DTO.NotificacaoDTO;
 import API.LibraryManagement.Acedig.Data.Mapper;
 import API.LibraryManagement.Acedig.Data.Model.Notificacao;
+import API.LibraryManagement.Acedig.Service.EmprestimoService;
 import API.LibraryManagement.Acedig.Service.NotificacaoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +15,11 @@ import java.util.List;
 public class NotificacaoController {
 
     private final NotificacaoService notificacaoService;
+    private final EmprestimoService emprestimoService;
 
-    NotificacaoController(NotificacaoService notificacaoService) {
+    NotificacaoController(NotificacaoService notificacaoService, EmprestimoService emprestimoService) {
         this.notificacaoService = notificacaoService;
+        this.emprestimoService = emprestimoService;
     }
 
     @GetMapping
@@ -35,5 +38,16 @@ public class NotificacaoController {
             return ResponseEntity.ok().build();
         }
         return ResponseEntity.notFound().build();
+    }
+    @PostMapping("/notificar-vencimentos")
+    public ResponseEntity<String> notificarVencimentosHoje() {
+        emprestimoService.notificarEmprestimosVenceremHoje();
+        return ResponseEntity.ok("Notificações de vencimento enviadas");
+    }
+
+    @PostMapping("/notificar-atrasos")
+    public ResponseEntity<String> notificarAtrasos() {
+        emprestimoService.notificarEmprestimosEmAtraso();
+        return ResponseEntity.ok("Notificações de atraso enviadas");
     }
 }

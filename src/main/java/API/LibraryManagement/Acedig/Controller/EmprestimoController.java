@@ -77,16 +77,4 @@ public class EmprestimoController {
         List<Emprestimo> emprestimos = emprestimoService.findEmprestimosByLivro(livroId);
         return ResponseEntity.ok(emprestimos);
     }
-
-    @PostMapping("/notificar-vencimentos")
-    public ResponseEntity<String> notificarVencimentosHoje() {
-        emprestimoService.notificarEmprestimosVenceremHoje();
-        return ResponseEntity.ok("Notificações de vencimento enviadas");
-    }
-
-    @PostMapping("/notificar-atrasos")
-    public ResponseEntity<String> notificarAtrasos() {
-        emprestimoService.notificarEmprestimosEmAtraso();
-        return ResponseEntity.ok("Notificações de atraso enviadas");
-    }
 }

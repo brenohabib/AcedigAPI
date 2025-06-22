@@ -62,6 +62,7 @@ public abstract class CommonLivroService<T extends Livro> {
     }
 
     public Optional<T> findById(Long id) {
+        System.out.println("passou por aqui");
         return repository.findById(id);
     }
 

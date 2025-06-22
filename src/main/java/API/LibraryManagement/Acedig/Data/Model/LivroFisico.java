@@ -7,6 +7,8 @@ import jakarta.persistence.OneToOne;
 public class LivroFisico extends Livro{
     private int quantidadeTotal;
     private int quantidadeDisponivel;
+    @OneToOne(mappedBy = "livroFisico")
+    private Emprestimo emprestimo;
 
     public int getQuantidadeTotal() {
         return quantidadeTotal;
@@ -23,9 +25,6 @@ public class LivroFisico extends Livro{
     public void setQuantidadeDisponivel(int quantidadeDisponivel) {
         this.quantidadeDisponivel = quantidadeDisponivel;
     }
-
-    @OneToOne(mappedBy = "livroFisico", optional = false)
-    private Emprestimo emprestimo;
 
     public Emprestimo getEmprestimo() {
         return emprestimo;

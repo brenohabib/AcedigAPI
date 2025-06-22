@@ -5,6 +5,7 @@ import API.LibraryManagement.Acedig.Repository.UsuarioRepository;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
@@ -14,9 +15,11 @@ import java.util.Optional;
 public class UsuarioService {
 
     private final UsuarioRepository usuarioRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     public UsuarioService(UsuarioRepository usuarioRepository) {
         this.usuarioRepository = usuarioRepository;
+        this.passwordEncoder = new BCryptPasswordEncoder();
     }
 
     public Optional<Usuario> update(Usuario newUsuario, Long id) {
@@ -24,7 +27,12 @@ public class UsuarioService {
                 .map(usuario -> {
                     usuario.setNome(newUsuario.getNome());
                     usuario.setEmail(newUsuario.getEmail());
-                    usuario.setSenha(newUsuario.getSenha());
+
+                    // Só criptografa a senha se ela foi alterada (não está vazia)
+                    if (newUsuario.getSenha() != null && !newUsuario.getSenha().isEmpty()) {
+                        usuario.setSenha(passwordEncoder.encode(newUsuario.getSenha()));
+                    }
+
                     usuario.setTelefone(newUsuario.getTelefone());
                     return usuarioRepository.save(usuario);
                 });
@@ -32,7 +40,7 @@ public class UsuarioService {
 
     public Optional<Usuario> login(String email, String senha) {
         return usuarioRepository.findByEmail(email)
-                .filter(user -> user.getSenha().equals(senha));
+                .filter(user -> passwordEncoder.matches(senha, user.getSenha()));
     }
 
     public void registrar(Usuario usuario) {
@@ -51,7 +59,7 @@ public class UsuarioService {
         Usuario novoUsuario = new Usuario();
         novoUsuario.setNome(usuario.getNome());
         novoUsuario.setEmail(usuario.getEmail());
-        novoUsuario.setSenha(usuario.getSenha());
+        novoUsuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
         novoUsuario.setTelefone(usuario.getTelefone());
 
         usuarioRepository.save(novoUsuario);
@@ -64,7 +72,7 @@ public class UsuarioService {
 
     public boolean validarCredenciais(String email, String senha) {
         Optional<Usuario> usuario = usuarioRepository.findByEmail(email);
-        return usuario.isPresent() && usuario.get().getSenha().equals(senha);
+        return usuario.isPresent() && passwordEncoder.matches(senha, usuario.get().getSenha());
     }
 
     public Optional<Usuario> findById(Long id) {
@@ -80,6 +88,9 @@ public class UsuarioService {
     }
 
     public Usuario save(Usuario usuario) {
+        if (usuario.getSenha() != null && !usuario.getSenha().isEmpty()) {
+            usuario.setSenha(passwordEncoder.encode(usuario.getSenha()));
+        }
         return usuarioRepository.save(usuario);
     }
 
